@@ -1,0 +1,89 @@
+Parte 2
+
+Ferramenta utilizada: Chatgpt
+
+Quantos testes foram gerados?
+R: 16
+
+Quantos passaram?
+R: 16
+
+Quantos falharam?
+R: 0
+
+O código está correto?
+R: Não, como a regra de negócio não foi informada para a IA, ela gerou os testes levando em consideração que o código enviado estava correto.
+
+
+
+Parte 3
+
+3.1
+| Classe de entrada                       |    Representante |   Esperado pela especificação | Coberta? |
+| --------------------------------------- | ---------------: | ----------------------------: | :------: |
+| Valor inválido (zero ou negativo)       |                0 |                            -1 |    Sim   |
+| Valor válido até R$ 100                 |               50 |       R$ 50,00 — sem desconto |    Sim   |
+| Valor acima de R$ 100 até R$ 500        |              300 |    R$ 285,00 — 5% de desconto |    Sim   |
+| Valor acima de R$ 500 até R$ 1.000      |              600 |   R$ 540,00 — 10% de desconto |    Sim   |
+| Valor acima de R$ 1.000                 |            1.200 | R$ 1.020,00 — 15% de desconto |    Sim   |
+| Cliente VIP                             |  600, VIP = true |   R$ 510,00 — 15% de desconto |    Sim   |
+| Cupom PRIMEIRA válido (pedido ≤ R$ 100) | 50,  "PRIMEIRA"  |    R$ 45,00 — 10% de desconto |    Sim   |
+
+
+3.2
+| Fronteira                            |        Valor | Esperado pela especificação               |           Coberta?          |
+| ------------------------------------ | -----------: | ----------------------------------------- | :-------------------------: |
+| Entre “até 100” e “acima de 100”     |     100,00   | Sem desconto → R$ 100,00                  |   Sim, mas incorretamente   |
+| Entre “até 500” e “acima de 500”     |     500,00   | 5% → R$ 475,00                            |             Sim             |
+| Entre “até 1.000” e “acima de 1.000” |   1.000,00   | 10% → R$ 900,00                           |             Sim             |
+| Teto máximo de desconto              |        20%   | O desconto nunca pode ultrapassar 20%     |             Não             |
+
+
+3.3
+| Combinação                                   | Esperado pela especificação                            |           Coberta?          |
+| -------------------------------------------- | ------------------------------------------------------ | :-------------------------: |
+| Cupom PRIMEIRA em pedido acima de R$ 100     | Cupom não deve ser aplicado                            |   Sim, mas incorretamente   |
+| Cupom PRIMEIRA em pedido até R$ 100          | +10 pontos percentuais de desconto                     |             Sim             |
+| Cliente VIP com cupom                        | VIP +5% e cupom +10%, desde que o pedido seja ≤ R$ 100 |             Não             |
+| Teto de 20% atingido                         | Desconto máximo deve permanecer em 20%                 |             Não             |
+
+
+Parte 4
+
+Total de testes agora?
+R: 20
+
+Quantos falharam?
+R: 2
+
+Quais defeitos foram revelados?
+R: Quando o valor é igual a 100 o desconto é de 5% e o cupom PRIMEIRA é aplicado para compras acima de 100 reais.
+
+Parte 6
+
+| Aspecto                           | Prompt 1 (código) | Prompt 2 (especificação) |
+| --------------------------------- | ----------------- | ------------------------ |
+| Quantidade de testes              |         16        |            34            |
+| Testou o valor limite R$ 100?     |        Não        |           Sim            |
+| Testou o cupom fora da faixa?     |        Não        |           Sim            |
+| Testou combinações de parâmetros? |        Não        |           Sim            |
+| Detectou algum defeito?           |        Não        |           Sim            |
+
+
+Parte 8
+
+1-O prompt 1 gerou uma suíte que aprovou todos os casos de teste pois ele só tinha acesso ao código e não fazia ideia de como deveria ser a regra de negócio, todos os casos que foram gerados vieram de conclusões tiradas a partir das validações dentro do próprio método.
+
+2- A afirmação está errada, entender a regra de negócio, definir as classes de equivalência e valor limite é oque possibilita a geração adequada e confiável de testes via IA.
+
+3- Demorei em torno de um minuto para gerar os testes mas auditar foi mais demorado. Essa combinação pode compensar profissionalmente, principalmente quando há muitas regras e casos de teste. A IA reduz bastante o esforço de criação inicial, mas não elimina a necessidade de revisão humana.
+
+
+4- O nome “deve aplicar 5% para valores entre 100 e 500” não é suficientemente correto segundo a especificação. O problema está justamente na palavra “entre”, pois ela não deixa claro se os valores 100 e 500 estão incluídos.
+
+
+5 - Arquivo MelhorPedidoTest.java
+
+
+
+

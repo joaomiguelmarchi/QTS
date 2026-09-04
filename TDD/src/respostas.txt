@@ -1,0 +1,23 @@
+Antes de escrever o teste, preveja: a implementação atual já atende ao requisito de que as notas 0 e 10 são válidas?
+R: Sim. A implementação atual já atende ao requisito, pois recusa apenas notas menores que 0 ou maiores que 10, mantendo 0 e 10 como valores válidos.
+
+Com nota 4,0 na primeira, quanto precisa na segunda?
+R: Precisa tirar 8,0 na segunda nota para alcançar média 6,0.
+
+Com nota 1,0, é possível ser aprovado?
+R: Não. Seria necessário tirar 11,0 na segunda nota, o que ultrapassa o limite máximo de 10. Nesse caso, o sistema deve retornar -1.
+
+Que casos de teste você vai escrever?
+R: Um caso em que seja possível atingir a média, como primeira nota 4,0 e resultado esperado 8,0; um caso com uma nota alta, como 10,0 e resultado esperado 2,0; e um caso impossível, como primeira nota 1,0, em que o resultado esperado é -1.
+
+Que valores você escolheu para testar o arredondamento?
+R: Escolhi valores cuja média tenha mais de uma casa decimal, como 8,0 e 7,5, cuja média é 7,75 e deve ser arredondada para 7,8. Também pode ser usado um segundo caso, como 6,0 e 6,5, cuja média 6,25 deve resultar em 6,3.
+
+Escreva um teste para um comportamento que já funciona — por exemplo, média de duas notas iguais. Ele passa de primeira. Isso é TDD? Justifique em duas linhas.
+R: Não é um ciclo completo de TDD, pois no TDD uma nova funcionalidade deve começar com um teste falhando. Ainda assim, o teste é útil para documentar o comportamento existente e protegê-lo contra futuras regressões.
+
+Quebre um requisito de propósito: troque media >= 6.0 por media > 6.0 no situacao(). Qual teste acusa? Quanto tempo levou para descobrir?
+R: O teste CT06, que verifica se a média exatamente 6,0 resulta em "Aprovado", acusa o erro. A descoberta ocorre imediatamente ao executar a suíte, pois o teste de valor limite falha e indica exatamente o comportamento que foi alterado.
+
+Um colega afirma: "TDD é perda de tempo, porque escrevo o dobro de código". Responda usando o que você observou no ciclo 2 e no ciclo 5.
+R: TDD exige escrever mais código de teste, mas esse esforço reduz riscos e facilita a manutenção. Na refatoração, os testes funcionam como uma rede de proteção, permitindo melhorar a estrutura do código com segurança e identificar rapidamente regressões. Além disso, como observado no ciclo 5, escrever os testes primeiro obriga o desenvolvedor a compreender a regra de negócio e calcular os resultados esperados antes da implementação, diminuindo a chance de criar uma solução incorreta e simplesmente assumir que ela está certa.
